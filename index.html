@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>小亚の扩列站</title>
     <style>
         * {
@@ -16,7 +16,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             background: url(./bg.jpg) no-repeat center center fixed;
             background-size: cover;
         }
@@ -67,6 +67,41 @@
 
         .squeeze {
             transform: scale(0.9);
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            body {
+                background-size: cover;
+                background-position: center;
+            }
+
+            #nav {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                border-radius: 2em;
+            }
+
+            #nav li a {
+                padding: 10px 20px;
+                font-size: 18px;
+            }
+
+            .slide1, .slide2 {
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #nav li a {
+                padding: 10px 15px;
+                font-size: 16px;
+            }
+
+            .slide1, .slide2 {
+                height: 45px;
+            }
         }
     </style>
 </head>
