@@ -33,12 +33,12 @@
             z-index: 1000;
         }
 
-        header nav ul {
+        nav ul {
             display: flex;
             justify-content: space-around;
         }
 
-        header nav ul li a {
+        nav ul li a {
             font-size: 18px;
             padding: 10px 20px;
             color: #4A90E2;
@@ -46,7 +46,7 @@
             transition: background-color 0.3s ease;
         }
 
-        header nav ul li a:hover {
+        nav ul li a:hover {
             background-color: rgba(74, 144, 226, 0.2);
         }
 
@@ -98,6 +98,61 @@
         .back-btn:hover {
             background-color: #357ABD;
         }
+
+        /* 汉堡菜单样式 */
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            font-size: 30px;
+            color: #4A90E2;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.9);
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                padding: 15px;
+                border-bottom: 1px solid #e4e9f5;
+            }
+        }
     </style>
 </head>
 
@@ -105,7 +160,8 @@
 
     <header>
         <nav>
-            <ul>
+            <span class="menu-icon" id="menu-icon">☰</span>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#introduction">自我介绍</a></li>
                 <li><a href="#anime">我推/我看</a></li>
                 <li><a href="#games">游戏</a></li>
@@ -121,13 +177,13 @@
 
         <div class="section" id="introduction">
             <h2>自我介绍</h2>
-            <p>坐标四川乐山，06年男生，ENFP-T，职高住校。职高并不是因为成绩，而是有其他原因。朋友圈时常发疯，介意勿扰。</p>
+            <p>坐标四川乐山，06年男，ENFP-T，职高住校。职高并不是因为成绩，而是有其他原因。朋友圈时常发疯，介意勿扰。</p>
         </div>
 
         <div class="section" id="anime">
             <h2>我推/我看</h2>
             <p><strong>我推：</strong>亚托莉、和泉纱雾</p>
-            <p><strong>我看：</strong>埃罗芒、中二病、Clannad、Kanon、铃芽之旅、你的名字。偏好日常恋爱都可能看。</p>
+            <p><strong>我看：</strong>埃罗芒、中二病、Clannad、Kanon、铃芽之旅、你的名字。偏好日常恋爱剧我会慢慢看的。</p>
         </div>
 
         <div class="section" id="games">
@@ -143,7 +199,7 @@
         <div class="section" id="contact">
             <h2>联系方式</h2>
             <p>QQ：2408951150</p>
-            <p>VX：ATRIlove520</p>
+            <p>WX：ATRIlove520</p>
         </div>
 
         <div class="section" id="hobbies">
@@ -153,6 +209,15 @@
 
         <a href="index.html" class="back-btn">返回主页</a>
     </div>
+
+    <script>
+        const menuIcon = document.getElementById("menu-icon");
+        const navLinks = document.getElementById("nav-links");
+
+        menuIcon.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
 
 </body>
 
