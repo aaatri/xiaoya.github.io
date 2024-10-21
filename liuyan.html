@@ -5,7 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>留言板</title>
     <style>
-        /* 样式部分省略，与之前的类似 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 600px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .messages {
+            margin-top: 20px;
+        }
+        .message {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .message p {
+            margin: 5px 0;
+        }
+        .message span {
+            font-size: 12px;
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -29,10 +90,10 @@
 </div>
 
 <script>
-    const repo = 'https://github.com/aaatri/xiaoya.github.io';  // 替换为你的仓库
+    const repo = 'https://github.com/aaatri/xiaoya.github.io/message-board';  // 替换为你的仓库名
     const branch = 'main';
     const filePath = 'data.json';
-    const token = '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'; // GitHub API Token
+    const token = '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'; // 你的 GitHub API 访问令牌
 
     // 获取留言
     async function loadMessages() {
@@ -54,7 +115,7 @@
         });
     }
 
-    // 生成模拟IP地址
+    // 生成伪IP地址
     function generateFakeIP() {
         return '192.168.' + Math.floor(Math.random() * 256) + '.' + Math.floor(Math.random() * 256);
     }
@@ -69,7 +130,7 @@
         if (username && content) {
             const newMessage = { username, content, ip, timestamp };
 
-            // 先获取现有的留言
+            // 获取现有留言
             const response = await fetch(`https://api.github.com/repos/${repo}/contents/${filePath}?ref=${branch}`);
             const data = await response.json();
             const contentBase64 = data.content;
@@ -79,7 +140,7 @@
             // 添加新留言
             existingMessages.push(newMessage);
 
-            // 更新留言到GitHub
+            // 更新留言到 GitHub
             const updatedContent = btoa(JSON.stringify(existingMessages, null, 2));
             const result = await fetch(`https://api.github.com/repos/${repo}/contents/${filePath}`, {
                 method: 'PUT',
