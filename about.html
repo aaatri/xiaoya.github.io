@@ -1,224 +1,187 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小亚的个人主页</title>
+    <title>小亚の次元领域</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #ff7eb6;
+            --secondary: #6bd9e9;
+            --bg: url('https://t.mwm.moe/fj');
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            list-style: none;
-            text-decoration: none;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e4f1fc;
-            color: #333;
-            height: 100vh;
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        nav ul li a {
-            font-size: 18px;
-            padding: 10px 20px;
-            color: #4A90E2;
-            border-radius: 15px;
-            transition: background-color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            background-color: rgba(74, 144, 226, 0.2);
+            font-family: 'Mochiy Pop P One', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), var(--bg) center/cover fixed;
+            color: #fff;
+            overflow-x: hidden;
         }
 
         .container {
-            margin-top: 100px;
-            max-width: 900px;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(15px);
+        }
+
+        /* 每日一言 */
+        .hitokoto-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin: 100px auto;
-        }
-
-        h1 {
+            padding: 30px;
+            margin: 80px 0 30px;
             text-align: center;
-            color: #4A90E2;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .section {
-            margin-bottom: 40px;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .section h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #4A90E2;
+        /* 音乐播放器 */
+        .music-station {
+            background: rgba(0,0,0,0.8);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
         }
 
-        .section p {
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .back-btn {
+        .album-art {
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin: 0 auto 20px;
             display: block;
+            animation: rotate 20s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .music-info {
             text-align: center;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #4A90E2;
-            color: white;
-            border: none;
+            margin-bottom: 20px;
+        }
+
+        /* 个人介绍卡片 */
+        .profile-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            text-decoration: none;
+            padding: 30px;
+            margin: 30px 0;
+            transition: 0.3s;
         }
 
-        .back-btn:hover {
-            background-color: #357ABD;
+        .info-section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 3px solid var(--primary);
         }
 
-        /* 汉堡菜单样式 */
-        .menu-icon {
-            display: none;
-            cursor: pointer;
-            font-size: 30px;
-            color: #4A90E2;
+        .tag {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px;
+            background: rgba(255,126,182,0.2);
+            border-radius: 15px;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        @keyframes rotate {
+            0% { transform: rotate(0); }
+            100% { transform: rotate(360deg); }
         }
 
-        .nav-links {
-            display: flex;
-        }
-
-        /* 响应式设计 */
         @media (max-width: 768px) {
-            .menu-icon {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                background: rgba(255, 255, 255, 0.9);
-                width: 100%;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            nav ul {
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-            }
-
-            nav ul li {
-                width: 100%;
-            }
-
-            nav ul li a {
-                padding: 15px;
-                border-bottom: 1px solid #e4e9f5;
+            .album-art {
+                width: 150px;
+                height: 150px;
             }
         }
     </style>
 </head>
-
 <body>
-
-    <header>
-        <nav>
-            <span class="menu-icon" id="menu-icon">☰</span>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#introduction">自我介绍</a></li>
-                <li><a href="#anime">我推/我看</a></li>
-                <li><a href="#games">游戏</a></li>
-                <li><a href="#rules">雷点</a></li>
-                <li><a href="#contact">联系方式</a></li>
-                <li><a href="#hobbies">兴趣爱好</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <div class="container">
-        <h1>关于小亚</h1>
-
-        <div class="section" id="introduction">
-            <h2>自我介绍</h2>
-            <p>坐标四川乐山，06年男，ENFP-T，职高住校。职高并不是因为成绩，而是有其他原因。朋友圈时常发疯，介意勿扰。170cm，偏圆脸，家境是一般的，长得是不好看的OK</p>
+        <!-- 每日一言 -->
+        <div class="hitokoto-box" id="hitokoto">
+            <div class="loading">✨ 二次元能量充能中...</div>
         </div>
 
-        <div class="section" id="anime">
-            <h2>我推/我看</h2>
-            <p><strong>我推：</strong>亚托莉、和泉纱雾</p>
-            <p><strong>我看：</strong>埃罗芒、中二病、Clannad、Kanon、铃芽之旅、你的名字。偏好日常恋爱剧我会慢慢看的。</p>
-        </div>
 
-        <div class="section" id="games">
-            <h2>游戏</h2>
-            <p>原神、光遇、金铲铲之战、和平精英、Minecraft、喵斯快跑。喜欢好游戏分享，也可一起玩。二次元游戏可能都会沾点，但拒绝尺度大的内容。</p>
-        </div>
 
-        <div class="section" id="rules">
-            <h2>雷点</h2>
-            <p>🚫 无脑黑、追星脑残粉、强行推崇强者、超雄，其他不喜欢的会直接指出。</p>
-        </div>
-
-        <div class="section" id="contact">
-            <h2>联系方式</h2>
-            <p>QQ：2408951150</p>
-            <p>WX：ATRIlove520</p>
-        </div>
-
-        <div class="section" id="hobbies">
-            <h2>兴趣爱好</h2>
-            <p>对计算机、Python等编程语言感兴趣，并有学习打算。</p>
-        </div>
-
-        <a href="index.html" class="back-btn">返回主页</a>
+ <!-- 个人介绍卡片 -->
+<div class="profile-card">
+    <h2>🌟 小亚档案</h2>
+    <div class="info-section">
+        <p class="tag">📍 坐标四川乐山</p>
+        <p class="tag">🎂 2006年，ENFP-T</p>
+        <p class="tag">📏 170cm 圆脸 自卑（？，羡慕高个子和帅气的人</p>
+        <p>🏫 职高高三 即将单招 现在休学在家<br>热爱自由的氛围，偶尔也会怀念家的温暖 <br> 💻 编程爱好者，正在学习Python和JavaScript，梦想有一天能做出自己的游戏 |<br>🚫 发圈预警，偶尔会吐槽生活的小烦恼，但更多是分享快乐（其实是抽象</p>
     </div>
 
-    <script>
-        const menuIcon = document.getElementById("menu-icon");
-        const navLinks = document.getElementById("nav-links");
+    <div class="info-section">
+        <h3>🌸 动漫收藏</h3>
+        <p class="tag">本命：<a href="https://mzh.moegirl.org.cn/%E4%BA%9A%E6%89%98%E8%8E%89" target="_blank">亚托莉</a></p>
+<p class="tag">和泉纱雾：<a href="https://mzh.moegirl.org.cn/%E5%92%8C%E6%B3%89%E7%BA%B1%E9%9B%BE" target="_blank">萌娘百科</a></p>
 
-        menuIcon.addEventListener("click", () => {
-            navLinks.classList.toggle("active");
+        <p>🎬 正在追番：其实现在并没有 欢迎推荐！</p>
+    </div>
+
+    <div class="info-section">
+        <h3>🎮 游戏领域</h3>
+        <p class="tag">原神（不怎么玩了）</p>
+        <p class="tag">光遇（目前玩的比较多）</p>
+        <p class="tag">金铲铲（主要是和别人玩）</p>
+        <p class="tag">PUBGM、和平精英（常玩）</p>
+        <p class="tag">王者荣耀（不常玩）</p>
+        <p>⚡ 拒绝尺度内容，游戏是为了快乐，不是为了内卷 | 🚫 雷点：无脑黑/饭圈，尊重他人是基本的礼貌</p>
+    </div>
+
+    <div class="info-section">
+        <h3>📱 找到我</h3>
+        <p class="tag">QQ：2408951150</p>
+        <p class="tag">微信：ATRIlove520</p>
+        <p>💌 欢迎同好交流，无论是动漫、游戏还是编程，都可以一起聊聊，希望结交更多志同道合的朋友～</p>
+    </div>
+</div>
+
+
+    <script>
+        // 每日一言
+        async function loadHitokoto() {
+            try {
+                const res = await fetch('https://v1.hitokoto.cn?c=a');
+                const data = await res.json();
+                document.getElementById('hitokoto').innerHTML = `
+                    <div>"${data.hitokoto}"</div>
+                    <div style="margin-top:15px">—— ${data.from}</div>
+                `;
+            } catch {
+                document.getElementById('hitokoto').innerHTML = `
+                    <div>✨ 今日も元気いっぱい！</div>
+                `;
+            }
+        }
+
+       
+        // 初始化
+        window.addEventListener('load', () => {
+            loadHitokoto();                   
+
+            // 自动播放保护
+            document.body.addEventListener('click', () => {
+                audio.play().catch(() => {});
+            }, { once: true });
         });
     </script>
-
 </body>
-
 </html>
