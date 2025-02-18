@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小亚の次元领域</title>
+    <title>小亚の领域</title>
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -32,7 +32,6 @@
             padding: 20px;
         }
 
-        /* 每日一言 */
         .hitokoto-box {
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
@@ -48,7 +47,6 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* 音乐播放器 */
         .music-station {
             background: rgba(0,0,0,0.8);
             border-radius: 20px;
@@ -111,14 +109,12 @@
 </head>
 <body>
     <div class="container">
-        <!-- 每日一言 -->
         <div class="hitokoto-box" id="hitokoto">
             <div class="loading">✨ 二次元能量充能中...</div>
         </div>
 
 
 
- <!-- 个人介绍卡片 -->
 <div class="profile-card">
     <h2>🌟 小亚档案</h2>
     <div class="info-section">
@@ -156,7 +152,6 @@
 
 
     <script>
-        // 每日一言
         async function loadHitokoto() {
             try {
                 const res = await fetch('https://v1.hitokoto.cn?c=a');
@@ -173,11 +168,11 @@
         }
 
        
-        // 初始化
+        
         window.addEventListener('load', () => {
             loadHitokoto();                   
 
-            // 自动播放保护
+            
             document.body.addEventListener('click', () => {
                 audio.play().catch(() => {});
             }, { once: true });
